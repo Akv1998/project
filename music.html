@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	 <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style type="text/css">
+    	*::before,*::after{
+    		margin: 0;
+    		padding: 0%;
+    		box-sizing: border-box;
+    	}
+    	.main_div{
+    		width: 100vw;
+    		height: 100vh;
+    		background-color: #f6f6f6;
+    		display: grid;
+    		place-items:center;
+    	}
+    	.music_container{
+    		width: 35rem;
+    		height: 40rem;background-color: #ffffff;
+    		border-radius: 2rem;
+    		box-shadow: 0 1.2rem 3rem 0.5rem rgba(0,0,0,0.2);padding: 3rem;
+    		text-align: center;
+    	}
+    	.music_container #title{
+    		text-transform: uppercase;
+    		letter-spacing: 0.2rem;
+    		word-spacing: 0.5rem;
+    		color: #171717;
+    		margin: 2.5rem;
+    		font-size: 2.5rem;
+
+    	}
+    	.music_container #title{
+    		color: #cccaca;text-transform: capitalize;letter-spacing: 0.1rem;font-size: 2rem;
+    		margin-bottom: 4rem;
+    		font-weight: 300;
+    	}
+    	.img_container{
+    		width: 25rem;
+    		height: 25rem;
+    		margin: auto;
+    	}
+    	img{
+    		width: 100%;
+    		height: 100%;
+    		border-radius: 50%;
+    		object-fit: cover;
+    		box-shadow: 0 1.2rem 3rem 0.5rem rgba(0,0,0,0.4);
+    	}
+    	.music_controls{
+    		width: 20rem;
+    		display: flex;
+    		justify-content: space-between;
+    		align-items: center;
+    		margin: auto;
+    		margin-top: 2.5rem;
+    	}
+    	.music_controls .fas:hover{
+    		color: gray;
+    	}
+    	.music_controls .fa-play:hover{
+    		background-color: #f6f6f6;
+    		color: #111;
+    		box-shadow: 0 1rem 2rem 0.2rem rgba(0,0,0,0.4);
+    	}
+    	.main_button{
+    		width: 5rem;
+    		height: 5rem;
+    		border-radius: 50%;
+    		background-color: #111;
+    		color: #f6f6f6;
+    		font-size: 1.4rem;
+    		margin-bottom: 2.5rem;
+    		display: flex;
+    		justify-content: center;
+    		align-items: center;
+    	}
+    	.fas_icon{
+    		margin-top: -50px;
+    	}
+    	.anime{
+    		animation: rotatePlayer 3s linear infinite; 
+    	}
+    	@keyframes rotatePlayer{
+    		from{ tranform:rotate(0deg); }
+    		to{
+    			transform: rotate(360deg);
+    		}
+    	}
+    </style>
+</head>
+<body>
+	<div class="main_div">
+		<div class="music_container">
+			<h2 id="titl"></h2>
+			<h3 id="artis"></h3>
+			<div class="img_container">
+				<img src="">
+			</div>
+			<audio src="" ></audio>
+			<div class="music_controls">
+				<i class="fas fa-backward fas_icon" id="prev"></i>
+				<i class="fas fa-play main_button" id="play"></i>
+				<i class="fas fa-forward fas_icon" id="next"></i>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+	const music =document.querySelector("audio");
+	const img = document.querySelector("img");
+	const play = document.getElementById("play");
+	const title = document.getElementById("titl");
+	const artist = document.getElementById("artis");
+	const prev = document.getElementById("prev");
+	const next = document.getElementById("next");
+	const songs =[
+	{
+		name :"isq_mubarak",
+		title:"Isq Mubaraq song mp3",
+		artist: "Loyalist",
+
+	},{
+		name:"thapa-3",
+		title:"sappherious",
+		artist:"aurora"
+	},
+	{
+		name:"kinna_sona",
+		title:"Kinna Sona Title Track song mp3",
+		artist:"Siddarth Roy"
+	}
+	,
+	{
+		name:"Tum_hi_aana",
+		title:"Tum Hi Aana Title Track song mp3",
+		artist:"Jubin Nautial"
+	}
+	]
+
+
+	 let isPlaying=false;
+// for play
+	const playMusic = ()=>{
+		isPlaying= true;
+		music.play();
+
+		play.classList.replace('fa-play',"fa-pause");
+		//img.classList.add("anime");
+	};
+	//for pause
+
+	//play.addEventListener('click',()=>{
+	 const pauseMusic = ()=>{
+		isPlaying= false;
+		music.pause();
+
+		play.classList.replace("fa-pause",'fa-play');
+		//img.classList.remove("anime");
+	};
+	play.addEventListener('click',()=>{
+		// if(isPlaying){
+		// 	pauseMusic();
+		// }else{
+		// 	playMusic();
+		// }
+
+		isPlaying ? pauseMusic() : playMusic();
+	});
+	//changing data
+	const loadSongs=(songs)=>{
+		title.textContent=songs.title;
+		artist.textContent=songs.artist;
+		music.src="music/"+songs.name+".mp3";
+		img.src="images/"+songs.name+".jpg";
+	};
+	 songIndex=1;
+	//loadSongs(songs[2]);
+	const nextSong = ()=>{
+		songIndex=(songIndex+1)% songs.length;
+		loadSongs(songs[songIndex]);
+		playMusic();
+	};
+
+	const prevSong = ()=>{
+		songIndex=(songIndex-1 + songs.length)% songs.length;
+		loadSongs(songs[songIndex]);
+		playMusic();
+	};
+	next.addEventListener('click',nextSong);
+	prev.addEventListener('click',prevSong);
+</script>
+</body>
+</html>
