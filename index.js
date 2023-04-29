@@ -6,5 +6,9 @@ app.get("/",(req,resp)=>{
 
 	resp.send("app is working");
 });
+app.get("/love/",(req,resp)=>{
+
+	resp.send("app is working");
+});
 
 app.listen(8000);
