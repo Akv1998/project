@@ -1,8 +1,7 @@
 FROM node:12.2.0-alpine
 WORKDIR app
 COPY . .
-RUN npm init
-RUN npm run test
+RUN npm install
 RUN npm i express
 RUN npm i mongoose
 RUN npm i nodemon
