@@ -3,4 +3,8 @@ WORKDIR app
 COPY . .
 RUN npm install
 RUN npm run test
+RUN npm i express
+RUN npm i mongoose
+npm i nodemon
 EXPOSE 8000
+CMD ["node","index.js"]
